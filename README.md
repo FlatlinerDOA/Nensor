@@ -5,7 +5,7 @@ Now based on the architecture of [TinyGrad](https://github.com/tinygrad/tinygrad
 
 ## What is this?
 
-A library that provides a simple way to work with Tensors (multi-dimensional arrays) of abitrary type, size and shape. In a similar vein to Numpy or Tensorflow, but with the following goals:
+A library that provides a simple way to work with Tensors (multi-dimensional arrays) of abitrary type, size and shape. In a similar vein to Pytorch, Numpy or Tensorflow, but with the following goals:
 
 * Simple and lightweight with Zero dependencies - No BLAS, BLIS, MKL or any giant C++ templated packages required.
 * Using only managed code (no C or C++ bindings unless absolutely necessary).

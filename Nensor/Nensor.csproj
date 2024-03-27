@@ -1,14 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-	<EnablePreviewFeatures>true</EnablePreviewFeatures>
-	<TargetFramework>net8.0</TargetFramework>
+	  <EnablePreviewFeatures>true</EnablePreviewFeatures>
+	  <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>	
+    <Authors>Andrew Chisholm</Authors>
+    <PackageId>Nensor</PackageId>
+    <Version>0.1.0</Version>
+    <Company></Company>
+    <PackageDescription>Lightweight .NET Tensor Library (Experimental)</PackageDescription>
+    <RepositoryUrl>https://github.com/FlatlinerDOA/Nensor</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="System.Memory" Version="4.5.5" />
 	</ItemGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>
