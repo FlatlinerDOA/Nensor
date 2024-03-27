@@ -16,7 +16,7 @@ A library that provides a simple way to work with Tensors (mulit-dimensional arr
 ## Why would anyone do this?
 
 1. To learn more about the logic and math behind libraries Numpy and Tensorflow.
-2. To experiment with new .NET 7.0 generic math.
+2. To experiment with .NET generic math.
 3. To see how far .NET performance can be pushed.
 
 ## Status

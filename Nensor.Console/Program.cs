@@ -1,54 +1,25 @@
-﻿using Nensor;
+﻿using System.Collections;
 
-var array1d = new int[]
-{
-	0,   1,  2,  3,  4
-};
+namespace Nensor;
 
-var array2d = new int[]
-{
-	0,   1,  2,  3,  4,
-	5,   6,  7,  8,  9,
-	10, 11, 12, 13, 14
-};
+internal class Program
+{   
+    public static readonly Type[] TestClasses = new[]
+    {
+        typeof(ShapeTests)
+    };
 
-var array3d = new int[]
-{
-	0,   1,  2,  3,  4,
-	5,   6,  7,  8,  9,
-	10, 11, 12, 13, 14,
+    public static IReadOnlyList<(string Name, bool Result)> RunTests() =>
+        (from type in TestClasses
+        from func in type.GetMethods(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
+        select (func.Name, func.Invoke(null, null) is true)).ToList();
+    private static void Main(string[] args)
+    {
+        RunTests().Dump();
+    }
+}
 
-	15, 16, 17, 18, 19,
-	20, 21, 22, 23, 24,
-	25, 26, 27, 28, 29
-};
-
-var array4d = new int[]
-{
-	 0,  1,  2,  3,  4,   
-	 5,  6,  7,  8,  9,   
-	10, 11, 12, 13, 14,   
-  
-	15, 16, 17, 18, 19,   
-	20, 21, 22, 23, 24,   
-	25, 26, 27, 28, 29,
-
-	    30, 31, 32, 33, 34,
-	    35, 36, 37, 38, 39,
-	    40, 41, 42, 43, 44,
-
-	    45, 46, 47, 48, 49,
-	    50, 51, 52, 53, 54,
-	    55, 56, 57, 58, 59,
-};
-
-var tensor2d = new Tensor<int>(array2d, 5, 3);
-var tensor3d = new Tensor<int>(array3d, 5, 3, 2);
-var tensor4d = new Tensor<int>(array4d, 5, 3, 2, 2);
-tensor2d.GetRowMajorOffset(2, 4).Dump();
-tensor2d[2, 4].Dump("tensor2d [2, 4], should be 14");
-tensor3d[4, 1, 2].Dump("tensor3d [4, 1, 2], should be 23");
-tensor4d[3, 2, 1, 1].Dump("tensor3d [3, 2, 1, 1], should be 53");
+// TODO: Tensor.Add(tensor2d[.., ..], 10).Dump();
 
 //return;
 //var row1 = tensor2d[0..1, ..].Dump("Row1");
@@ -77,7 +48,12 @@ public static class Utils
 			Console.WriteLine($"# {message}");
 		}
 
-		Console.WriteLine(value.ToString());
+		Console.WriteLine(value switch
+        {
+            IEnumerable x => string.Join("\n", x.Cast<object>().Select(t => t.ToString())),
+            object x => x.ToString(),
+            null => "(null)"
+        });
 		return value;
     }
 }
